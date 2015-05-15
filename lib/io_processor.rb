@@ -22,7 +22,7 @@ class IOProcessor
       signals        = NASASignal.parse(input_signals)
       plateau.add_rover(rover_position, signals)
     end
-    plateau.move_rovers
+    plateau.move_rovers.push('==========')
   end
 end
 
