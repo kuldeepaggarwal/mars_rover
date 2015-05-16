@@ -1,4 +1,4 @@
-5 5
+SQUARE 0 0 5
 1 2 N
 LMLMLMLMM
 3 3 E

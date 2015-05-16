@@ -1,15 +1,6 @@
 require File.expand_path('rover', __dir__)
 
 class Plateau
-
-  attr_reader :end_x, :end_y, :start_x, :start_y
-  def initialize(end_x, end_y, start_x = 0, start_y = 0)
-    @end_x   = end_x.to_i
-    @end_y   = end_y.to_i
-    @start_x = start_x
-    @start_y = start_y
-  end
-
   def rovers
     @rovers ||= []
   end
@@ -22,10 +13,14 @@ class Plateau
     rovers.push(Rover.new(*attributes, self))
   end
 
-  def attainable_position?(position)
-    position.x >= start_x and
-    position.x <= end_x and
-    position.y >= start_y and
-    position.y <= end_y
+  def self.parse(input)
+    parameters = input.split(' ')
+    klass_type = parameters.shift
+    klass_type.downcase!
+    klass_type[0] = klass_type[0].upcase
+    klass = "#{ klass_type }Plateau"
+    Object.const_get(klass).new(*parameters)
   end
 end
+
+Dir[File.expand_path('plateaus/*.rb', __dir__)].each { |file| require file }
