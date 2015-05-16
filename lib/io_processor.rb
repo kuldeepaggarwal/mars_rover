@@ -29,7 +29,7 @@ end
 if __FILE__ == $0
   circle_file_path = File.expand_path('../data/circle_input.rb', __dir__)
 
-  puts "Default file( #{ circle_file_path.to_s } )"
+  puts "Enter the file path.\nDefault file( #{ circle_file_path.to_s } )"
   file_path = gets.chomp
   file_path = circle_file_path if file_path.empty?
   puts IOProcessor.process(file_path)
