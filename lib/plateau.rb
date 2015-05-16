@@ -13,6 +13,10 @@ class Plateau
     rovers.push(Rover.new(*attributes, self))
   end
 
+  def attainable_position?(_)
+    false
+  end
+
   def self.parse(input)
     parameters = input.split(' ')
     klass_type = parameters.shift
