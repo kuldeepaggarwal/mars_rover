@@ -15,7 +15,7 @@ class IOProcessor
 
   def process
     inputs  = File.readlines(file_path)
-    plateau = Plateau.new(*inputs.shift.split(' '))
+    plateau = Plateau.parse(inputs.shift)
 
     inputs.each_slice(2) do |rover_inputs, input_signals|
       rover_position = Position.parse(rover_inputs)
@@ -27,6 +27,10 @@ class IOProcessor
 end
 
 if __FILE__ == $0
-  file_path = File.expand_path('../data/input.rb', __dir__)
+  circle_file_path = File.expand_path('../data/circle_input.rb', __dir__)
+
+  puts "Enter the file path.\nDefault file( #{ circle_file_path.to_s } )"
+  file_path = gets.chomp
+  file_path = circle_file_path if file_path.empty?
   puts IOProcessor.process(file_path)
 end
